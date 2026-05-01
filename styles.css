@@ -1,0 +1,255 @@
+:root {
+  --bg: #f7f5f0;
+  --fg: #111111;
+  --muted: #6c6a64;
+  --line: rgba(17, 17, 17, 0.18);
+  --panel: rgba(247, 245, 240, 0.94);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 1.38;
+  letter-spacing: 0.005em;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-title {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 20;
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.menu-button {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 30;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-button span {
+  display: block;
+  width: 18px;
+  height: 1px;
+  margin: 6px auto;
+  background: var(--fg);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.menu-button[aria-expanded="true"] span:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+.menu-button[aria-expanded="true"] span:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
+.menu-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 18px 18px 64px;
+  background: var(--panel);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.menu-panel.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-panel a {
+  font-size: clamp(22px, 5vw, 54px);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+
+main {
+  min-height: 100vh;
+}
+
+.hero {
+  min-height: 92vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 96px 18px 42px;
+}
+
+.hero-copy {
+  max-width: 620px;
+}
+
+.kicker,
+.section-label,
+figcaption {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+  font-weight: 400;
+}
+
+h1 {
+  max-width: 720px;
+  margin-bottom: 14px;
+  font-size: clamp(34px, 8vw, 88px);
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+}
+
+.hero p:last-child {
+  max-width: 430px;
+  color: var(--muted);
+}
+
+.image-band {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding: 0 18px 86px;
+}
+
+figure {
+  margin: 0;
+}
+
+.image-placeholder {
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(17,17,17,0.05), transparent 40%),
+    linear-gradient(0deg, rgba(17,17,17,0.03), rgba(17,17,17,0.03));
+}
+
+figcaption {
+  margin: 8px 0 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.text-section,
+.contact {
+  display: grid;
+  grid-template-columns: minmax(90px, 0.35fr) minmax(0, 1fr);
+  gap: 24px;
+  padding: 22px 18px;
+  border-top: 1px solid var(--line);
+}
+
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+article h2 {
+  margin-bottom: 8px;
+  font-size: 18px;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+article p,
+.split p,
+.contact p:last-child {
+  max-width: 560px;
+  color: var(--muted);
+}
+
+.split div {
+  display: grid;
+  gap: 10px;
+}
+
+.contact {
+  min-height: 38vh;
+  align-items: start;
+}
+
+@media (max-width: 760px) {
+  body {
+    font-size: 14px;
+  }
+
+  .site-title {
+    top: 14px;
+    left: 14px;
+  }
+
+  .menu-button {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .hero {
+    min-height: 86vh;
+    padding: 82px 14px 34px;
+  }
+
+  .image-band,
+  .project-list,
+  .text-section,
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .image-band {
+    gap: 12px;
+    padding: 0 14px 56px;
+  }
+
+  .text-section,
+  .contact {
+    gap: 10px;
+    padding: 18px 14px;
+  }
+
+  .image-placeholder {
+    aspect-ratio: 16 / 11;
+  }
+}
